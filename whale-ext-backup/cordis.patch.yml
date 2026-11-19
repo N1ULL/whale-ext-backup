@@ -1,0 +1,31 @@
+# whale-ext 的 bundle patch：只加两条宿主层行，不碰任何预设定义。
+- insert:
+
+    # ── 时钟：把 UTC+8 的当前时间作为「必需运行时上下文」注入 ──────────────
+    # 用 required: true，所以不吃 preset 的 includeRuntimeContext: false，
+    # 也不吃 complete: true 的 section 黑洞。
+    - id: whale-clock
+      name: 'whale-ext'
+      config:
+        row: clock
+
+    # ── 日记：静默 5 分钟后把当天写成一篇 ────────────────────────────────
+    - id: whale-diary
+      name: 'whale-ext'
+      config:
+        row: diary
+        idleMinutes: 5
+        todayAfterHour: 22
+        maxFallbackRetries: 3   # 流水稿最多再试几次升级成散文
+        maxCatchupDays: 30      # 回补往前看几天
+        maxPerRun: 3            # 一次最多补几篇
+        bootDelayMs: 6000       # 启动后多久开始回补
+        provider: deepseek-official
+        model: deepseek-flash
+        files:
+          - file: whale-loli.md
+            dir: whale-loli
+          - file: whale-loli-v2-live.md
+            dir: whale-loli-v2-live
+          - file: whale-loli-v3-naughty.md
+            dir: whale-loli-v3-naughty

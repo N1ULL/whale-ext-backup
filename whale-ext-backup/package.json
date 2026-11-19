@@ -1,0 +1,23 @@
+{
+  "name": "whale-ext",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "鲸鱼娘扩展：UTC+8 时钟注入 + 静默 5 分钟后自动写日记。独立于 dsh-whale-loli，升级不受影响。",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
